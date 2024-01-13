@@ -1,5 +1,130 @@
 # A Problem of CodeLlama
 
+[This paper]((https://arxiv.org/abs/2312.14856)) designs a new test dataset for code models and makes the test results on models such as GPT-4, GPT-3.5, CodeLlama (7B and 13B, 4-bit quantization) [open-source](https://github.com/ShahinHonarvar/Turbulence-Benchmark). 
+
+Some noteworthy data analyses in the paper show, for example, the differences between setting the temperature to 0 or the default value D in Table II indicate that **when generating code with LLMs, basically using temperature=0 is sufficient**.
+![](Turbulence-tableII.jpg)
+
+As shown in the figure below, the dataset consists of 60 manually designed question templates (the image shows the first 8 of them). Each question template has several variable parameters ($0, $1, etc.), and by replacing these parameters with specific values, a set of similar question instances can be formed. The paper generated 100 variants for each template, resulting in 6000 question instances in total. Each model was tested with each question instance 5 times, generating 30000 Python functions. These functions were then tested with test cases also designed manually using templates.
+![](codellama13-0-1~8-templates.png)
+Figure 1: Mean correct on CodeLlama 13B t=0
+
+The above figure shows the average number of correct code generated out of 100 variants of each question template on CodeLlama 13B, shown in the second column. Complete statistics for other CodeLlama models and temperature settings are in my fork repository: [13B t=0](https://github.com/AI-LLM/Turbulence-Benchmark/blob/main/CodeLlama13_T_0/all-templates.html), [13B t=D](https://github.com/AI-LLM/Turbulence-Benchmark/blob/main/CodeLlama13_T_D/all-templates.html), [7B t=0](https://github.com/AI-LLM/Turbulence-Benchmark/blob/main/CodeLlama7_T_0/all-templates.html), [7B t=D](https://github.com/AI-LLM/Turbulence-Benchmark/blob/main/CodeLlama7_T_D/all-templates.html).
+
+Each question template essentially determines the difficulty of the question, and 100 variant instances can be seen as minor perturbations to test the robustness of LLMs. The difficulty of the questions generally increases with the sequence number, such as Q3 and Q4 are more challenging than Q1 and Q2 due to the added requirement of "positive integers".
+
+However, it was found that the correctness of CodeLlama is not mainly affected by these factors. Some specific issues have a greater impact, for example, in Figure 1, the red underlined part shows that the correctness immediately drops when "exclusive" appears, indicating that the model cannot handle the requirement of index exclusive. For instance, in Q2's instance 1:
+
+Q2-1: Write a function called 'all_ints_exclusive' that takes one argument, a list of integers, and returns the list of all elements from index 27 to index 34, both exclusive.
+
+The result generated 5 times (CodeLlama13_T_0/Q2/codellama_results_*/Folder_1/generated_answer.py) were all:
+```python
+def all_ints_exclusive(my_list):
+    return my_list[27:34]
+```
+
+The results were the same when manually tested with the non-quantized [ColeLlama 13B](https://replicate.com/meta/codellama-13b-instruct):
+```python
+def all_ints_exclusive(my_list):
+    return my_list[27:34]
+```
+
+And also the same for a larger-scale [CodeLlama-34B](https://aviary.anyscale.com):
+> Here is a function called 'all_ints_exclusive' that takes one argument, a list of integers, and returns the list of all elements from index 27 to index 34, both exclusive:
+> ```python
+> def all_ints_exclusive(my_list):
+>     return my_list[27:34]
+> ```
+> This function uses slicing to extract the elements from the list. The syntax `my_list[27:34]` returns a new list containing all elements from index 27 to index 34, both exclusive.
+> 
+> For example, if `my_list` is `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`, the function would return `[3, 4, 5, 6, 7, 8, 9]`.
+
+Does CodeLlama "understand" "inclusive"?
+
+Q1-1: Write a function called 'all_ints_inclusive' that takes one argument, a list of integers, and returns the list of all elements from index 14 to index 64, both inclusive.
+
+The generated results (CodeLlama13_T_0/Q1/codellama_results_*/Folder_1/generated_answer.py) were all correct:
+```python
+def all_ints_inclusive(my_list):
+    return my_list[14:65]
+```
+
+Q3-14: Write a function called 'all_pos_ints_inclusive' that takes one argument, a list of integers, and returns the list of all positive integers from index 5 to index 7, both inclusive. If no positive integers exist in the specified range, the function should return an empty list.
+
+The result (CodeLlama13_T_0/Q3/codellama_results_1/Folder_14/generated_answer.py) was not correct, confusing the concept of array indices with values:
+```python
+def all_pos_ints_inclusive(my_list):
+    return [x for x in my_list if 5 <= x <= 7 and x > 0]
+```
+
+Interestingly, a comparison with a similar question:
+
+Q5-14: Write a function called 'all_neg_ints_inclusive' that takes one argument, a list of integers, and returns the list of all negative integers from index 5 to index 7, both inclusive. If no negative integers exist in the specified range, the function should return an empty list.
+
+The result (CodeLlama13_T_0/Q5/codellama_results_1/Folder_14/generated_answer.py) was correct:
+```python
+def all_neg_ints_inclusive(my_list):
+    return [x for x in my_list[5:8] if x < 0]
+```
+
+Similarly, for Q7-14, the result (CodeLlama13_T_0/Q7/codellama_results_1/Folder_14/generated_answer.py) was also correct:
+```python
+def all_even_ints_inclusive(my_list):
+    return [x for x in my_list[5:8] if x % 2 == 0]
+```
+
+The presence of requirements like "negative" and "even" might lead to the use of array slice notation. The most common case in the training data for models might be the use of `a[start:stop+1]`, so CodeLlama "guessed right" in these cases.
+
+The paper tested the 4-bit quantized version, and my manual testing of the non-quantized CodeLlama 13B showed very similar results.
+
+Q3-14 →
+```python
+def all_pos_ints_inclusive(my_list):
+    return [x for x in my_list if x > 0 and x >= 5 and x <= 7]
+```
+
+Q5-14 →
+```python
+def all_neg_ints_inclusive(my_list):
+    return [x for x in my_list[5:8] if x < 0]
+```
+
+Q7-14 →
+```python
+def all_even_ints_inclusive(my_list):
+    return [x for x in my_list[5:8] if x % 2 == 0]
+```
+
+The larger-scale CodeLlama-34B showed slight differences.
+
+Q3-14 →
+```python
+def all_pos_ints_inclusive(my_list):
+    return [x for x in my_list[5:8] if x > 0]
+```
+
+Q5-14 →
+```python
+def all_neg_ints_inclusive(my_list): 
+    return [x for x in my_list[5:8] if x < 0]
+```
+
+Q7-14 →
+```python
+def all_even_ints_inclusive(my_list): 
+    result = [] 
+    for i in range(5, 8): 
+        if i % 2 == 0: 
+            result.append(i) 
+    return result
+
+It uses the start:stop+1 method more consistently to achieve a higher accuracy rate. Of course, comparing non-quantized with quantized versions and larger scale parameters still requires multiple repeated complete tests like those in the paper to reduce probabilistic errors.
+
+Besides the range index exclusive problem, the paper also summarized four other categories of issues leading to incorrect results that warrant further detailed analysis. These issues are likely the main factors causing the huge variations in CodeLlama's accuracy rate (as shown in the following image). How to improve these issues in model training or fine-tuning is key. From the slight advantage shown by the 34B model, **using larger models might be an effective approach**. However, based on the findings above, **it's difficult to say that CodeLlama 13B or smaller models have any real understanding of natural language instructions**; different usage methods from online large models like GPT should be explored.
+![](discover-gradient-multi.png)
+
+---in Chinese---
+
 [这篇论文](https://arxiv.org/abs/2312.14856)设计了一套新的代码模型的测试数据集，并且[开源](https://github.com/ShahinHonarvar/Turbulence-Benchmark)了在GPT-4、GPT-3.5、CodeLlama (7B和13B，4位量化)等模型上的测试结果。
 
 文中有一些值得注意的数据分析，比如 Table II中可以看出temperature设为0或者默认值D的差异表明**使用LLM来生成代码时基本上只用temperature=0就可以了**。
@@ -39,7 +164,7 @@ def all_ints_exclusive(my_list):
 > 
 > For example, if `my_list` is `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`, the function would return `[3, 4, 5, 6, 7, 8, 9]`.
 
-那CodeLlama是否“理解”inclusive呢？
+那CodeLlama是否“理解”"inclusive"呢？
 
 Q1-1: Write a function called 'all_ints_inclusive' that takes one argument, a list of integers, and returns the list of all elements from index 14 to index 64, both inclusive.
 
