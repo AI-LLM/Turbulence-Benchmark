@@ -51,7 +51,7 @@ def all_ints_inclusive(my_list):
 
 Q3-14: Write a function called 'all_pos_ints_inclusive' that takes one argument, a list of integers, and returns the list of all positive integers from index 5 to index 7, both inclusive. If no positive integers exist in the specified range, the function should return an empty list.
 
-The result (CodeLlama13_T_0/Q3/codellama_results_1/Folder_14/generated_answer.py) was not correct, confusing the concept of array indices with values:
+The result (CodeLlama13_T_0/Q3/codellama_results_1/Folder_14/generated_answer.py) was surprisingly not correct, confusing the concept of array indices with values:
 ```python
 def all_pos_ints_inclusive(my_list):
     return [x for x in my_list if 5 <= x <= 7 and x > 0]
@@ -179,7 +179,7 @@ def all_ints_inclusive(my_list):
 
 Q3-14: Write a function called 'all_pos_ints_inclusive' that takes one argument, a list of integers, and returns the list of all positive integers from index 5 to index 7, both inclusive. If no positive integers exist in the specified range, the function should return an empty list.
 
-结果（CodeLlama13_T_0/Q3/codellama_results_1/Folder_14/generated_answer.py）并不正确，数组小下标与值的概念混淆了:
+结果（CodeLlama13_T_0/Q3/codellama_results_1/Folder_14/generated_answer.py）并不正确，数组下标与值的概念混淆了:
 ```python
 def all_pos_ints_inclusive(my_list):
     return [x for x in my_list if 5 <= x <= 7 and x > 0]
