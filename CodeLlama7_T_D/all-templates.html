@@ -1,0 +1,746 @@
+
+    <html>
+    <head>
+    <style>
+    table {width: 100%; border-collapse: collapse;}
+    td, th {border: 1px solid #ddd; padding: 8px; word-wrap: break-word;}
+    td:first-child, th:first-child, td:nth-child(2), th:nth-child(2) {max-width: 64px;}
+    tr:nth-child(even){background-color: #f2f2f2;}
+    tr:hover {background-color: #ddd;}
+    th {padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;}
+    pre {white-space: pre-wrap; word-wrap: break-word;}
+    </style>
+    </head>
+    <body>
+    <table>
+    <tr>
+        <th>Question Number</th>
+        <th>Mean Correct</th>
+        <th>Question Template</th>
+        <th>Solution Template</th>
+        <th>Tests Link</th>
+    </tr>
+    <tr><td>1</td><td>80.4</td><td><pre>Write a function called 'all_ints_inclusive' that takes one argument, a list of integers, and returns the list of all elements from index $0 to index $1, both inclusive.</pre></td><td><pre>from typing import List
+
+
+def all_ints_inclusive(l: List[int]) -> List[int]:
+    return l[$0:$1 + 1]</pre></td><td><a href='../CodeLlama7_T_D/Q1/tests.py.template'>Link</a></td></tr><tr><td>2</td><td>0.0</td><td><pre>Write a function called 'all_ints_exclusive' that takes one argument, a list of integers, and returns the list of all elements from index $0 to index $1, both exclusive.</pre></td><td><pre>from typing import List
+
+
+def all_ints_exclusive(l: List[int]) -> List[int]:
+    return l[$0 + 1:$1]
+</pre></td><td><a href='../CodeLlama7_T_D/Q2/tests.py.template'>Link</a></td></tr><tr><td>3</td><td>54.2</td><td><pre>Write a function called 'all_pos_ints_inclusive' that takes one argument, a list of integers, and returns the list of all positive integers from index $0 to index $1, both inclusive. If no positive integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_pos_ints_inclusive(l: List[int]) -> List[int]:
+    l = l[$0:$1 + 1]
+    return [i for i in l if i > 0]
+</pre></td><td><a href='../CodeLlama7_T_D/Q3/tests.py.template'>Link</a></td></tr><tr><td>4</td><td>0.2</td><td><pre>Write a function called 'all_pos_ints_exclusive' that takes one argument, a list of integers, and returns the list of all positive integers from index $0 to index $1, both exclusive. If no positive integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_pos_ints_exclusive(l: List[int]) -> List[int]:
+    return [i for i in l[$0 + 1:$1] if i > 0]
+</pre></td><td><a href='../CodeLlama7_T_D/Q4/tests.py.template'>Link</a></td></tr><tr><td>5</td><td>76.8</td><td><pre>Write a function called 'all_neg_ints_inclusive' that takes one argument, a list of integers, and returns the list of all negative integers from index $0 to index $1, both inclusive. If no negative integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_neg_ints_inclusive(l: List[int]) -> List[int]:
+    return [i for i in l[$0:$1 + 1] if i < 0]
+</pre></td><td><a href='../CodeLlama7_T_D/Q5/tests.py.template'>Link</a></td></tr><tr><td>6</td><td>0.0</td><td><pre>Write a function called 'all_neg_ints_exclusive' that takes one argument, a list of integers, and returns the list of all negative integers from index $0 to index $1, both exclusive. If no negative integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_neg_ints_exclusive(l: List[int]) -> List[int]:
+    return [i for i in l[$0 + 1:$1] if i < 0]
+</pre></td><td><a href='../CodeLlama7_T_D/Q6/tests.py.template'>Link</a></td></tr><tr><td>7</td><td>65.2</td><td><pre>Write a function called 'all_even_ints_inclusive' that takes one argument, a list of integers, and returns the list of all even integers from index $0 to index $1, both inclusive. If no even integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_even_ints_inclusive(l: List[int]) -> List[int]:
+    l = l[$0:$1 + 1]
+    return [i for i in l if i % 2 == 0]</pre></td><td><a href='../CodeLlama7_T_D/Q7/tests.py.template'>Link</a></td></tr><tr><td>8</td><td>0.0</td><td><pre>Write a function called 'all_even_ints_exclusive' that takes one argument, a list of integers, and returns the list of all even integers from index $0 to index $1, both exclusive. If no even integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_even_ints_exclusive(l: List[int]) -> List[int]:
+    return [i for i in l[$0 + 1:$1] if i % 2 == 0]</pre></td><td><a href='../CodeLlama7_T_D/Q8/tests.py.template'>Link</a></td></tr><tr><td>9</td><td>65.2</td><td><pre>Write a function called 'all_odd_ints_inclusive' that takes one argument, a list of integers, and returns the list of all odd integers from index $0 to index $1, both inclusive. If no odd integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_odd_ints_inclusive(l: List[int]) -> List[int]:
+    return [i for i in l[$0:$1 + 1] if i % 2 != 0]</pre></td><td><a href='../CodeLlama7_T_D/Q9/tests.py.template'>Link</a></td></tr><tr><td>10</td><td>0.4</td><td><pre>Write a function called 'all_odd_ints_exclusive' that takes one argument, a list of integers, and returns the list of all odd integers from index $0 to index $1, both exclusive. If no odd integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_odd_ints_exclusive(l: List[int]) -> List[int]:
+    return [i for i in l[$0 + 1:$1] if i % 2 != 0]</pre></td><td><a href='../CodeLlama7_T_D/Q10/tests.py.template'>Link</a></td></tr><tr><td>11</td><td>73.6</td><td><pre>Write a function called 'find_largest_num' that takes one argument, a list of numbers, and returns the largest element from index $0 to index $1, both inclusive.</pre></td><td><pre>from typing import List
+
+
+def find_largest_num(l: List[int]) -> int:
+    return max(l[$0:$1 + 1])</pre></td><td><a href='../CodeLlama7_T_D/Q11/tests.py.template'>Link</a></td></tr><tr><td>12</td><td>77.0</td><td><pre>Write a function called 'find_smallest_num' that takes one argument, a list of numbers, and returns the smallest element from index $0 to index $1, both inclusive.</pre></td><td><pre>from typing import List
+
+
+def find_smallest_num(l: List[int]) -> int:
+    return min(l[$0:$1 + 1])</pre></td><td><a href='../CodeLlama7_T_D/Q12/tests.py.template'>Link</a></td></tr><tr><td>13</td><td>0.4</td><td><pre>Write a function called 'find_second_largest_num' that takes one argument, a list of distinct numbers, as input and returns the second largest element from index $0 to index $1, both inclusive. If there is no such element, the function should return 'None'.</pre></td><td><pre>from typing import List
+
+
+def find_second_largest_num(l: List[int]) -> int | None:
+    l = l[$0:$1 + 1]
+    if len(l) < 2:
+        return None
+    l.sort()
+    return l[-2]</pre></td><td><a href='../CodeLlama7_T_D/Q13/tests.py.template'>Link</a></td></tr><tr><td>14</td><td>0.6</td><td><pre>Write a function called 'find_second_smallest_num' that takes one argument, a list of distinct numbers, as input and returns the second smallest element from index $0 to index $1, both inclusive. If there is no such an element, the function should return 'None'.</pre></td><td><pre>from typing import List
+
+
+def find_second_smallest_num(l: List[int]) -> int | None:
+    l = l[$0:$1 + 1]
+    if len(l) < 2:
+        return None
+    l.sort()
+    return l[1]</pre></td><td><a href='../CodeLlama7_T_D/Q14/tests.py.template'>Link</a></td></tr><tr><td>15</td><td>73.0</td><td><pre>Write a function called 'sum_odd_ints_inclusive' that takes one argument, a list of integers, and returns the sum of all odd integers from index $0 to index $1, both inclusive. If no odd integers exist in the specified range, the function should return 0.</pre></td><td><pre>from typing import List
+
+
+def sum_odd_ints_inclusive(l: List[int]) -> int:
+    l = l[$0:$1 + 1]
+    return sum([i for i in l if i % 2 != 0])</pre></td><td><a href='../CodeLlama7_T_D/Q15/tests.py.template'>Link</a></td></tr><tr><td>16</td><td>64.2</td><td><pre>Write a function called 'sum_even_ints_inclusive' that takes one argument, a list of integers, and returns the sum of all even integers from index $0 to index $1, both inclusive. If no even integers exist in the specified range, the function should return 0.</pre></td><td><pre>from typing import List
+
+
+def sum_even_ints_inclusive(l: List[int]) -> int:
+    l = l[$0:$1 + 1]
+    return sum([i for i in l if i % 2 == 0])</pre></td><td><a href='../CodeLlama7_T_D/Q16/tests.py.template'>Link</a></td></tr><tr><td>17</td><td>73.2</td><td><pre>Write a function called 'all_ints_div_by_both_two_nums' that takes one argument, a list of integers, and returns the list of all integers divisible by both $0 and $1 from index $2 to index $3, both inclusive. If no such integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_ints_div_by_both_two_nums(l: List[int]) -> List[int]:
+    l = l[$2:$3 + 1]
+    return [i for i in l if i % $0 == 0 and i % $1 == 0]
+</pre></td><td><a href='../CodeLlama7_T_D/Q17/tests.py.template'>Link</a></td></tr><tr><td>18</td><td>77.4</td><td><pre>Write a function called 'sum_ints_div_by_either_nums' that takes one argument, a list of integers, and returns the sum of all integers divisible by either $0 or $1 from index $2 to index $3, both inclusive. If no such integers exist in the specified range, the function should return 0.</pre></td><td><pre>from typing import List
+
+
+def sum_ints_div_by_either_nums(l: List[int]) -> int:
+    l = l[$2:$3 + 1]
+    return sum([i for i in l if i % $0 == 0 or i % $1 == 0])
+</pre></td><td><a href='../CodeLlama7_T_D/Q18/tests.py.template'>Link</a></td></tr><tr><td>19</td><td>1.8</td><td><pre>Write a function called 'all_ints_not_div_by_num' that takes one argument, a list of integers, and returns the list of all integers not divisible by $0 from index $1 to index $2, both exclusive. If no such integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_ints_not_div_by_num(l: List[int]) -> List[int]:
+    l = l[$1 + 1:$2]
+    return [i for i in l if i % $0 != 0]
+</pre></td><td><a href='../CodeLlama7_T_D/Q19/tests.py.template'>Link</a></td></tr><tr><td>20</td><td>0.0</td><td><pre>Write a function called 'find_n_th_smallest_num' that takes one argument, a list of distinct numbers, as input and returns the $0th smallest number from index $1 to index $2, both inclusive.</pre></td><td><pre>from typing import List
+
+
+def find_n_th_smallest_num(l: List[int]) -> int | None:
+    l = l[$1:$2 + 1]
+    if len(l) < $0 or $0 <= 0:
+        return None
+    l.sort()
+    return l[$0 - 1]</pre></td><td><a href='../CodeLlama7_T_D/Q20/tests.py.template'>Link</a></td></tr><tr><td>21</td><td>0.0</td><td><pre>Write a function called 'all_ints_div_by_num' that takes one argument, a list of integers, and returns the list of all integers divisible by $0 from index $1 to index $2, both inclusive. If no such integers exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def all_ints_div_by_num(l: List[int]) -> List[int]:
+    l = l[$1:$2 + 1]
+    return [i for i in l if i % $0 == 0]
+</pre></td><td><a href='../CodeLlama7_T_D/Q21/tests.py.template'>Link</a></td></tr><tr><td>22</td><td>72.0</td><td><pre>Write a function called 'find_sum_of_multiples' that takes one argument, a positive integer, and returns the sum of the first $0 positive multiples of the given integer.</pre></td><td><pre>def find_sum_of_multiples(n: int) -> int:
+    return sum(i * n for i in range(1, $0 + 1))</pre></td><td><a href='../CodeLlama7_T_D/Q22/tests.py.template'>Link</a></td></tr><tr><td>23</td><td>71.8</td><td><pre>Write a function called 'find_divisors_in_range' that takes a positive integer as its argument, and returns the list of all positive divisors of the given integer that are between $0 and $1, both inclusive. If no such divisors exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def find_divisors_in_range(n: int) -> List[int]:
+    x, y = $0, $1
+    if y < 1 or n < x:
+        return []
+    if x < 1:
+        x = 1
+    if n < y:
+        y = n
+    return [i for i in range(x, y + 1) if n % i == 0]
+    </pre></td><td><a href='../CodeLlama7_T_D/Q23/tests.py.template'>Link</a></td></tr><tr><td>24</td><td>47.6</td><td><pre>Write a function called 'sum_of_divisors_in_range' that takes a positive integer as its argument, and returns the sum of all positive divisors of the given integer that are between $0 and $1, both inclusive. If no such divisors exist in the specified range, the function should return 0.</pre></td><td><pre>def sum_of_divisors_in_range(n: int) -> int:
+    x, y = $0, $1
+    if y < 1 or n < x:
+        return 0
+    if x < 1:
+        x = 1
+    if n < y:
+        y = n
+    return sum([i for i in range(x, y + 1) if n % i == 0])</pre></td><td><a href='../CodeLlama7_T_D/Q24/tests.py.template'>Link</a></td></tr><tr><td>25</td><td>51.4</td><td><pre>Write a function called 'insert_at_index' that takes one argument, a list, and returns a list that is identical except that $0 has been inserted at index $1 and, as a result, the returned list should have one more element than the given list.</pre></td><td><pre>from typing import List
+
+
+def insert_at_index(l: List[object]) -> List[object]:
+    if $1 < 0 or len(l) <= $1:
+        return l
+    else:
+        return l[:$1] + [$0] + l[$1:]</pre></td><td><a href='../CodeLlama7_T_D/Q25/tests.py.template'>Link</a></td></tr><tr><td>26</td><td>95.8</td><td><pre>Write a function called 'sum_in_range' that takes one argument, a list of integers, and returns the sum of all integers from the given list that are between $0 and $1, both inclusive. If the given list does not contain such integers, the function should return 0.</pre></td><td><pre>from typing import List
+
+
+def sum_in_range(l: List[int]) -> int:
+    return sum([i for i in l if $0 <= i <= $1])
+</pre></td><td><a href='../CodeLlama7_T_D/Q26/tests.py.template'>Link</a></td></tr><tr><td>27</td><td>14.8</td><td><pre>Write a function called 'insert_after_index' that takes one argument, a list, and returns a list that is identical except that $0 has been inserted at the index immediately succeeding index $1 and, as a result, the returned list should have one more element than the given list.</pre></td><td><pre>from typing import List
+
+
+def insert_after_index(l: List[object]) -> List[object]:
+    if $1 < 0:
+        return l
+    elif len(l) <= $1:
+        l.append($0)
+        return l
+    else:
+        return l[:$1 + 1] + [$0] + l[$1 + 1:]</pre></td><td><a href='../CodeLlama7_T_D/Q27/tests.py.template'>Link</a></td></tr><tr><td>28</td><td>11.0</td><td><pre>Write a function called 'return_nth_smallest_ascii' that takes one argument, a string of distinct characters. The function should return the character with the $0th smallest ASCII value among those characters in the string that occur between indices $1 to $2, both inclusive.</pre></td><td><pre>def return_nth_smallest_ascii(s: str) -> str:
+    s = s[$1:$2 + 1]
+    if len(s) < $0:
+        return ''
+
+    s = sorted(s)
+    return s[$0 - 1]</pre></td><td><a href='../CodeLlama7_T_D/Q28/tests.py.template'>Link</a></td></tr><tr><td>29</td><td>34.6</td><td><pre>Write a function called 'gcf_two_nums' that takes one argument, a list of positive integers, and returns the greatest common factor of the integers at indices $0 and $1.</pre></td><td><pre>from typing import List
+
+
+def gcf_two_nums(l: List[int]) -> int | None:
+    if len(l) < 2:
+        return None
+    x, y = l[$0], l[$1]
+    x_factors = [i for i in range(1, x + 1) if x % i == 0]
+    y_factors = [i for i in range(1, y + 1) if y % i == 0]
+
+    result = 0
+    for i in reversed(x_factors):
+        if i in y_factors:
+            result = i
+            break
+    return result</pre></td><td><a href='../CodeLlama7_T_D/Q29/tests.py.template'>Link</a></td></tr><tr><td>30</td><td>53.2</td><td><pre>Write a function called 'insert_before_character' that takes one argument, a string, and returns a string that is identical except that character '$0' has been inserted immediately preceding any occurrences of character '$1'.</pre></td><td><pre>def insert_before_character(s: str) -> str:
+    return s.replace('$1', '$0' + '$1')</pre></td><td><a href='../CodeLlama7_T_D/Q30/tests.py.template'>Link</a></td></tr><tr><td>31</td><td>16.6</td><td><pre>Write a function called 'if_perfect_num' takes one argument, a list of positive integers, and returns true if the integer at index $0 is a perfect number, otherwise, it should return false.</pre></td><td><pre>from typing import List
+
+
+def if_perfect_num(l: List[int]) -> bool:
+    num = l[$0]
+    if num <= 1:
+        return False
+    return sum([i for i in range(1, num) if num % i == 0]) == num</pre></td><td><a href='../CodeLlama7_T_D/Q31/tests.py.template'>Link</a></td></tr><tr><td>32</td><td>29.8</td><td><pre>Write a function called 'insert_after_character' that takes one argument, a string, and returns a string that is identical except that character '$0' has been inserted immediately succeeding any occurrences of character '$1'.</pre></td><td><pre>def insert_after_character(s: str) -> str:
+    return s.replace('$1', '$1' + '$0')</pre></td><td><a href='../CodeLlama7_T_D/Q32/tests.py.template'>Link</a></td></tr><tr><td>33</td><td>11.0</td><td><pre>Write a function called 'return_vowels' that takes one argument, a string. From the given string the function should return the list of all vowel English letters between index $0 (inclusive) and index $1 (exclusive) that are greater than character $2 and smaller than or equal to character $3. If no such characters exist in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def return_vowels(s: str) -> List[str]:
+    vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+    result = []
+    sliced_s = s[$0:$1]
+    if not sliced_s:
+        return result
+    for char in sliced_s:
+        if char in vowels and '$2' < char <= '$3':
+            result.append(char)
+
+    return result
+</pre></td><td><a href='../CodeLlama7_T_D/Q33/tests.py.template'>Link</a></td></tr><tr><td>34</td><td>0.8</td><td><pre>Write a function called 'find_original_set' that takes exactly $0 distinct arguments, each of which is a set of integers. The function should return the smallest set such that each of the given arguments is a subset of it.</pre></td><td><pre>def find_original_set(*args) -> set[int]:
+    result = set()
+    for s in args:
+        result |= s
+    return result</pre></td><td><a href='../CodeLlama7_T_D/Q34/tests.py.template'>Link</a></td></tr><tr><td>35</td><td>0.2</td><td><pre>Write a function called 'remove_repeat_chars' that takes one argument, a string. For each character in the given string that occurs more than once between the indices $0 and $1, both exclusive, the function should remove all occurrences of that character from the string, while preserving the order of all characters in the string. The function should return the altered string.</pre></td><td><pre>def remove_repeat_chars(s: str) -> str:
+    sliced_s = s[$0 + 1:$1]
+    return ''.join([char for char in s if sliced_s.count(char) <= 1])</pre></td><td><a href='../CodeLlama7_T_D/Q35/tests.py.template'>Link</a></td></tr><tr><td>36</td><td>0.2</td><td><pre>Write a function called 'filter_chars' that takes one argument, a string. For each character between the indices $2 and $3 (both exclusive) in the given string, if that character is greater than character '$0' and smaller than character '$1', the function should remove all occurrences of that character within the string while keeping the order of all characters in the string intact. The function should return the altered string.</pre></td><td><pre>def filter_chars(s: str) -> str:
+    sliced_s = s[$2 + 1:$3]
+    if not sliced_s:
+        return s
+    result = ''
+    for char in s:
+        if char in sliced_s and ('$0' < char < '$1'):
+            continue
+        result += char
+
+    return result
+</pre></td><td><a href='../CodeLlama7_T_D/Q36/tests.py.template'>Link</a></td></tr><tr><td>37</td><td>1.8</td><td><pre>Write a function called 'filter_chars' that takes one argument, a string. For each character of the given string that occurs between indices $2 and $3, both inclusive, and is greater than or equal to character '$0' and smaller than or equal to character '$1', the function should remove all occurrences of that character from the string, while preserving the order of all characters in the string. The function should return the altered string.</pre></td><td><pre>def filter_chars(s: str) -> str:
+    if not s:
+        return s
+    sliced_s = s[$2:$3 + 1]
+    for char in sliced_s:
+        if '$0' <= char <= '$1':
+            s = s.replace(char, '')
+
+    return s</pre></td><td><a href='../CodeLlama7_T_D/Q37/tests.py.template'>Link</a></td></tr><tr><td>38</td><td>0.4</td><td><pre>Write a function called 'find_subset_of_length_n' that takes one argument, a set of elements, and returns the number of all its subsets of size $0.</pre></td><td><pre>import math
+
+
+def find_subset_of_length_n(l: set[object]) -> int:
+    return math.comb(len(l), $0)</pre></td><td><a href='../CodeLlama7_T_D/Q38/tests.py.template'>Link</a></td></tr><tr><td>39</td><td>27.8</td><td><pre>Write a function called 'return_n_greatest_chars' that takes one argument, a string of distinct characters and creates the sorted list of exactly $0 characters of the given string that have the greatest ASCII values. The function should sort the list in $1 order and returns it.</pre></td><td><pre>from typing import List
+
+
+def return_n_greatest_chars(s: str) -> List[str]:
+    if len(s) < $0:
+        return []
+    if "$1" == "ascending":
+        sorted_s = sorted(s)
+        return sorted_s[-$0:]
+    else:
+        sorted_s = sorted(s, reverse=True)
+        return sorted_s[:$0]
+        </pre></td><td><a href='../CodeLlama7_T_D/Q39/tests.py.template'>Link</a></td></tr><tr><td>40</td><td>28.4</td><td><pre>Write a function called 'return_n_smallest_chars' that takes one argument, a string of distinct characters and creates a list of exactly $0 characters of the given string that have the smallest ASCII values. The function should sort the list in $1 order and returns the list.</pre></td><td><pre>from typing import List
+
+
+def return_n_smallest_chars(s: str) -> List[str]:
+    if len(s) < $0:
+        return []
+    if "$1" == "ascending":
+        sorted_s = sorted(s)
+        return sorted_s[:$0]
+    else:
+        sorted_s = sorted(s, reverse=True)
+        return sorted_s[-$0:]</pre></td><td><a href='../CodeLlama7_T_D/Q40/tests.py.template'>Link</a></td></tr><tr><td>41</td><td>5.6</td><td><pre>Write a function called 'identical_elements' that takes two arguments, two lists of the same size, and returns the set of all elements that occur at least once in both lists anywhere between index $0 and index $1, both inclusive. If no such elements exist in the given lists, the function should return an empty set.</pre></td><td><pre>from typing import List
+
+
+def identical_elements(l1: List[object], l2: List[object]) -> set[object]:
+    result = []
+    if not l1 or not l2:
+        return set(result)
+    sliced_l1 = l1[$0:$1 + 1]
+    sliced_l2 = l2[$0:$1 + 1]
+    for i in sliced_l1:
+        if i in sliced_l2:
+            sliced_l2.remove(i)
+            result.append(i)
+
+    return set(result)</pre></td><td><a href='../CodeLlama7_T_D/Q41/tests.py.template'>Link</a></td></tr><tr><td>42</td><td>0.0</td><td><pre>Write a function called 'prime_factors' that takes one argument, a list of positive integers, and returns the set of all prime factors of the integer at index $0.</pre></td><td><pre>from typing import List
+
+
+def prime_factors(l: List[int]) -> List[int]:
+    num = l[$0]
+    result = []
+    number_factors = [i for i in range(1, num + 1) if num % i == 0]
+    for i in number_factors:
+        if i == 1:
+            continue
+        elif i == 2 or i == 3:
+            result.append(i)
+        else:
+            flag = True
+            for j in range(2, i):
+                if i % j == 0:
+                    flag = False
+                    break
+            if flag:
+                result.append(i)
+
+    return set(result)
+</pre></td><td><a href='../CodeLlama7_T_D/Q42/tests.py.template'>Link</a></td></tr><tr><td>43</td><td>23.4</td><td><pre>Write a function called 'find_primes_between_indices' that takes one argument, a list of integers, and returns the sorted list of all prime numbers from index $0 to index $1, both inclusive. The returned list should be in $2 order. If no prime number exists in the specified range, the function should return an empty list.</pre></td><td><pre>from typing import List
+
+
+def find_primes_between_indices(l: List[int]) -> List[int]:
+    result = []
+    if not l:
+        return result
+    flag = False
+    sliced_l = l[$0:$1 + 1]
+    for i in sliced_l:
+        if i <= 1:
+            continue
+        for j in range(2, i):
+            if i % j == 0:
+                flag = True
+                break
+        if flag:
+            flag = False
+        else:
+            result.append(i)
+    
+    if "$2" == "descending":
+        return sorted(result, reverse=True)
+    else:
+        return sorted(result)
+        </pre></td><td><a href='../CodeLlama7_T_D/Q43/tests.py.template'>Link</a></td></tr><tr><td>44</td><td>7.2</td><td><pre>Write a function called 'composite_nums_between_indices' that takes one argument, a list of positive integers. The function should return the set of all composite numbers in the given list that are between index $0 to index $1, both inclusive. If no composite number exists in the specified range, the function should return an empty set.</pre></td><td><pre>from typing import List
+
+
+def composite_nums_between_indices(l: List[int]) -> set[int]:
+    result = set()
+    sliced_l = l[$0:$1 + 1]
+    for i in sliced_l:
+        if i < 4:
+            continue
+        for j in range(2, i):
+            if i % j == 0:
+                result.add(i)
+                break
+    return result
+</pre></td><td><a href='../CodeLlama7_T_D/Q44/tests.py.template'>Link</a></td></tr><tr><td>45</td><td>1.4</td><td><pre>Write a function called 'palindromes_between_indices' that takes one argument, which is a string. The given string may consist of any character. The function should return the set of all palindromes of the length of at least $0 such that each palindrome is created from any possible arrangement of the English letters in the given string that occur between index $1 to index $2, both inclusive. If no such palindromes of the specified length can be created from the English letters of the given string that occur in the specified range, the function should return an empty set. The function should form each palindrome in a case-insensitive manner.</pre></td><td><pre>import string
+from itertools import permutations
+
+
+def palindromes_between_indices(s: str) -> set[str]:
+    s = s[$1: $2 + 1]
+    s = s.translate(str.maketrans('', '', string.punctuation))
+    s = s.translate(str.maketrans('', '', string.digits))
+    s = s.replace(' ', '')
+    if len(s) < $0 or len(list(s)) == len(set(s)):
+        return set()
+    all_palindrome = set()
+    result = []
+    if len(s) < $0:
+        return all_palindrome
+    for i in range($0, len(s) + 1):
+        result += (list(permutations(s, i)))
+
+    return {''.join(i) for i in result if ''.join(i).lower() == ''.join(i).lower()[::-1]}</pre></td><td><a href='../CodeLlama7_T_D/Q45/tests.py.template'>Link</a></td></tr><tr><td>46</td><td>14.0</td><td><pre>Write a function called 'gcf_three_nums' that takes one argument, a list of positive integers, and returns the greatest common factor of the elements at indices $0, $1 and $2.</pre></td><td><pre>import math
+from typing import List
+
+
+def gcf_three_nums(l: List[int]) -> int | None:
+    if len(l) < 3:
+        return None
+    
+    return math.gcd(math.gcd(l[$0], l[$1]), l[$2])
+    </pre></td><td><a href='../CodeLlama7_T_D/Q46/tests.py.template'>Link</a></td></tr><tr><td>47</td><td>0.2</td><td><pre>Write a function called 'palindromes_of_specific_lengths' that takes one argument, a string. The given string may consist of any character. The function should return the set of all palindromes with the following requirements. Only palindromes occurring in the substring from index $0 to index $1, both inclusive, should be considered. Only palindromes of lengths between $2 to $3 (both inclusive) should be considered. Each palindrome should only consist of English letters. If no such palindrome with the length specified occurs in the specified index range, the function should return an empty set. The function should find the palindromes in a case-insensitive manner.</pre></td><td><pre>def palindromes_of_specific_lengths(s: str) -> set[str]:
+    s = s[$0:$1 + 1]
+    if len(s) < $2 or len(list(s)) == len(set(s)):
+        return set()
+    all_palindrome = []
+    for k in range($2, $3 + 1):
+        for i in range(0, len(s)):
+            chunk = s[i:i + k]
+            if len(chunk) < k:
+                break
+            if chunk.lower() == chunk[::-1].lower() and chunk.isalpha():
+                all_palindrome.append(chunk)
+
+    if len(all_palindrome) > 0:
+        return set(all_palindrome)
+    else:
+        return set()
+</pre></td><td><a href='../CodeLlama7_T_D/Q47/tests.py.template'>Link</a></td></tr><tr><td>48</td><td>0.6</td><td><pre>Write a function called 'return_binary_or_hexa' that takes one argument, a tuple of distinct nonnegative integers sorted in ascending order. Let 'a' denote the integer stored at index $0, and 'b' the integer stored at index $1. The function should calculate the sum of all integers from a + 1 to b - 1 (both inclusive) that are not present in the tuple between indices $0 and $1. If the sum is an odd number, the function should return the binary representation string of the sum; otherwise, it should return the hexadecimal representation string of the sum. The binary representation should not be prefixed with '0b'. The hexadecimal representation should not be prefixed with '0x'. The binary and hexadecimal representations should start with the most significant digit and have no leading zeros. The letters in hexadecimal representation can be either in lowercase or uppercase. If all integers from a + 1 to b - 1 (both inclusive) are present in the specified range in the tuple, the function should return an empty string.</pre></td><td><pre>from typing import Tuple
+
+
+def return_binary_or_hexa(t: Tuple) -> str:
+    a = t[$0]
+    b = t[$1]
+    trimmed_t = list(t[$0:$1])
+    trimmed_t = trimmed_t[1:]
+    reference = [i for i in range(a + 1, b)]
+    for i in trimmed_t:
+        reference.remove(i)
+
+    if not reference:
+        return ''
+
+    n = sum(reference)
+    result = ''
+    if n % 2 != 0:
+        while n >= 2:
+            r = n % 2
+            n = n // 2
+            result += str(r)
+        result += str(n)
+        return result[::-1]
+
+    else:
+        d = {10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'}
+        if n < 10:
+            return str(n)
+        elif 10 <= n <= 15:
+            return d.get(n)
+        while n >= 16:
+            r = n % 16
+            n = n // 16
+            result += str(r) if r < 10 else d.get(r)
+        result += str(n) if n < 10 else d.get(n)
+        return result[::-1]
+        </pre></td><td><a href='../CodeLlama7_T_D/Q48/tests.py.template'>Link</a></td></tr><tr><td>49</td><td>36.4</td><td><pre>Write a function called 'if_decimal_is_divisible' that takes one argument, a binary representation string of a non-negative decimal integer. In the given binary representation the most significant digit appears first. The function should return true if the decimal integer corresponding to the given string is divisible by the $0th number that occurs in the Fibonacci sequence; otherwise, it should return false. The first number that occurs in the Fibonacci sequence is 0.</pre></td><td><pre>def if_decimal_is_divisible(binary_string: str) -> bool:
+    decimal_num, j = 0, 0
+    for i in range(len(binary_string) - 1, -1, -1):
+        if binary_string[j] == '1':
+            decimal_num += (2 ** i)
+        j += 1
+
+    f1, f2, f3, c = 0, 1, 0, 3
+    while c <= $0:
+        f3 = f1 + f2
+        f1, f2 = f2, f3
+        c += 1
+
+    if decimal_num % f3 == 0:
+        return True
+    return False</pre></td><td><a href='../CodeLlama7_T_D/Q49/tests.py.template'>Link</a></td></tr><tr><td>50</td><td>10.6</td><td><pre>Write a function called 'if_contains_anagrams' that takes one argument, a list of strings. The function should return true if there are at least $0 pairs of anagrams in the given list; otherwise, it should return false. The function should only consider the anagrams of the length of at least three. The function should compare the strings in a case-insensitive manner.</pre></td><td><pre>from typing import List
+
+
+def if_contains_anagrams(l: List[str]) -> bool:
+    if len(l) < 2:
+        return False
+
+    counter = 0
+    modified_l = [x for i in l if len(x := i.replace(' ', '').lower()) > 2]
+
+    while len(modified_l) > 1:
+        x = modified_l[0]
+        ll = modified_l[1:]
+        for y in ll:
+            if len(x) != len(y) or not x:
+                continue
+            if sorted(x) == sorted(y):
+                counter += 1
+        modified_l = modified_l[1:]
+
+    if counter < $0:
+        return False
+        
+    return True</pre></td><td><a href='../CodeLlama7_T_D/Q50/tests.py.template'>Link</a></td></tr><tr><td>51</td><td>21.4</td><td><pre>Write a function called 'if_contains_anagrams' that takes one argument, a list of strings. The function should return true if there are at most $0 pairs of anagrams in the given list; otherwise, it should return false. The function should only consider the anagrams of the English letters. The function should only consider the anagrams of the length of at least three. The function should compare the strings in a case-insensitive manner.</pre></td><td><pre>from typing import List
+
+
+def if_contains_anagrams(l: List[str]) -> bool:
+    if len(l) < 2:
+        return False
+
+    counter = 0
+    modified_l = [i.replace(' ', '').lower() for i in l]
+    while len(modified_l) > 1:
+        x = modified_l[0]
+        ll = modified_l[1:]
+        for y in ll:
+            if len(x) != len(y) or not x:
+                continue
+            if sorted(x) == sorted(y):
+                counter += 1
+        modified_l = modified_l[1:]
+
+    if counter > $0:
+        return False
+        
+    return True</pre></td><td><a href='../CodeLlama7_T_D/Q51/tests.py.template'>Link</a></td></tr><tr><td>52</td><td>0.0</td><td><pre>Write a function called 'palindrome_of_length_n' that takes one argument, a string, and returns the set of all palindromes of the length equal to $0, where each palindrome is a substring of the given string. Each palindrome should only consist of English letters. If there is no palindrome of the specified length as a substring of the given string, the function should return an empty set. The function should find the palindromes in a case-insensitive manner.</pre></td><td><pre>import string
+
+
+def palindrome_of_length_n(s: str) -> set[str]:
+    if len(s) < $0:
+        return set()
+    all_palindrome = []
+    for i in range(0, len(s)):
+        chunk = s[i:i + $0]
+        if len(chunk) < $0:
+            break
+        if chunk.lower() == chunk[::-1].lower() and chunk.isalpha():
+            all_palindrome.append(chunk)
+
+    if len(all_palindrome) > 0:
+        return set(all_palindrome)
+    else:
+        return set()
+</pre></td><td><a href='../CodeLlama7_T_D/Q52/tests.py.template'>Link</a></td></tr><tr><td>53</td><td>0.0</td><td><pre>Write a function called 'palindrome_of_length_at_least_n' that takes one argument, a string, and returns the set of all palindromes of the length greater than or equal to $0 that exist in the given string. Each palindrome should only consist of English letters. If no such palindromes exist in the given string, the function should return an empty set. The function should find the palindromes in a case-insensitive manner.</pre></td><td><pre>def palindrome_of_length_at_least_n(s: str) -> set[str]:
+    if len(s) < $0:
+        return set()
+
+    all_palindrome = []
+    for i in range(len(s) - ($0 - 1)):
+        for j in range($0, len(s) + 1):
+            chunk = s[i:j]
+            if len(chunk) >= $0 and chunk.lower() == chunk[::-1].lower() and chunk.isalpha():
+                all_palindrome.append(chunk)
+
+    if len(all_palindrome) > 0:
+        return set(all_palindrome)
+    else:
+        return set()
+</pre></td><td><a href='../CodeLlama7_T_D/Q53/tests.py.template'>Link</a></td></tr><tr><td>54</td><td>0.0</td><td><pre>Write a function called 'all_right_truncatable_prime' that takes an argument which is a tuple of positive integers. Let x be the integer at index $0. The function should return the sorted list of all right-truncatable prime numbers less than x. The returned list should be sorted in $1 order. If there is no such right-truncatable prime number, the function should return an empty list. A right-truncatable prime number is a prime number that remains prime when the last rightmost digit is successively removed.</pre></td><td><pre>from typing import List
+
+    
+def is_right_truncatable_prime(n: int) -> bool:
+    if '0' in str(n) or n < 2:
+        return False
+    while n >= 2:
+        for i in range(2, n):
+            if n % i == 0:
+                return False
+        n = n // 10
+    if n == 1:
+        return False
+    return True
+
+
+def all_right_truncatable_prime(tup: tuple) -> List[int]:
+    n = tup[$0]
+    result = []
+    for i in range(2, n):
+        if is_right_truncatable_prime(i):
+            result.append(i)
+
+    if '$1' == 'descending':
+        result.reverse()
+
+    return result</pre></td><td><a href='../CodeLlama7_T_D/Q54/tests.py.template'>Link</a></td></tr><tr><td>55</td><td>0.0</td><td><pre>Write a function called 'lists_with_product_equal_n' that takes an argument, a circular list of integers. In a circular list, the head and the tail are adjacent to each other to form a circle. The function should return a list of sublists each of which contains the contiguous integers from the given list such that their product equals $0. Each sublist in the returned list can be of any size as long as it is smaller than or equal to the size of the given list. If no such sublist exists, the function should return an empty list. If there are duplicates of such a sublist, they should all be contained in the returned list. The order of sublists in the returned list does not matter.</pre></td><td><pre>import math
+from typing import List
+
+    
+def lists_with_product_equal_n(l: List[int]) -> List[List[int]]:
+    if not l:
+        return []
+    dictionary = {}
+    for j in range(len(l)):
+        temp_ls = l[j:] + l[:j]
+        for i in range(1, len(temp_ls) + 1):
+            s = math.prod(temp_ls[:i])
+            if s not in dictionary:
+                dictionary[s] = [temp_ls[:i]]
+            else:
+                dictionary[s].append(temp_ls[:i])
+
+    if $0 not in dictionary.keys():
+        return []
+    result = dictionary.get($0)
+    if len(result) == 1:
+        return [result[0]]
+
+    return result</pre></td><td><a href='../CodeLlama7_T_D/Q55/tests.py.template'>Link</a></td></tr><tr><td>56</td><td>14.8</td><td><pre>Write a function called 'all_substring_of_size_n' that takes one argument which is a string. The function should return the list of all distinct substrings of the length equal to $0 with no duplicate characters. If no such substrings exist in the given string, the function should return an empty list. The order of the substrings in the returned list does not matter.</pre></td><td><pre>from typing import List
+from itertools import combinations
+
+
+def all_substring_of_size_n(s: str) -> List[str]:
+    if len(s) < $0 or $0 < 1:
+        return []
+
+    if len(s) == $0 and len(set(s)) == len(s):
+        return [s]
+
+    all_no_dup = []
+    length = len(s) - 1
+    while length > 0:
+        chunks = [s[i:j] for i, j in combinations(range(len(s) + 1), r=2) if len(s[i:j]) == length]
+        for chunk in chunks:
+            if len(set(chunk)) == len(chunk):
+                all_no_dup.append(chunk)
+        length -= 1
+
+    dict = {}
+    for i in all_no_dup:
+        length = len(i)
+        if length not in dict:
+            dict[length] = [i]
+        else:
+            dict[length].append(i)
+
+    if $0 not in dict.keys():
+        return []
+    return list(set(dict.get($0)))
+</pre></td><td><a href='../CodeLlama7_T_D/Q56/tests.py.template'>Link</a></td></tr><tr><td>57</td><td>0.0</td><td><pre>Write a function called 'submatrix_with_particular_sum' that takes one argument which is a two-dimensional numpy matrix of integers. The function should return the list of all submatrices of the given matrix such that the sum of all integers in each submatrix equals $0. If no such submatrix is found, the function should return an empty list.</pre></td><td><pre>import numpy as np
+from numpy import matrix
+from typing import Any, List
+
+
+def submatrix_with_particular_sum(mat: Any) -> List[matrix]:
+    result = []
+    if type(mat) == list:
+        if not mat:
+            return []
+    elif mat.size == 0:
+        return []
+    if type(mat).__module__ != np.__name__:
+        mat = np.asmatrix(mat)
+    rows, columns = mat.shape[0], mat.shape[1]
+    for c in range(rows):
+        for i in range(columns):
+            for j in range(1, columns + 1 - i):
+                temp_submatrix = (mat[c:c + 1, i:i + j])
+                submatrix_sum = np.sum(temp_submatrix)
+                if submatrix_sum == $0:
+                    result.append(temp_submatrix)
+    for c in range(columns):
+        for i in range(rows):
+            for j in range(2, rows + 1 - i):
+                temp_submatrix = (mat[i:i + j, c:c + 1])
+                submatrix_sum = np.sum(temp_submatrix)
+                if submatrix_sum == $0:
+                    result.append(temp_submatrix)
+    for i in range(0, rows - 1):
+        for row in range(1, rows - i):
+            for j in range(0, columns - 1):
+                for column in range(1, columns - j):
+                    temp_submatrix = (mat[i:row + i + 1, j:column + j + 1])
+                    submatrix_sum = np.sum(temp_submatrix)
+                    if submatrix_sum == $0:
+                        result.append(temp_submatrix)
+
+    return result
+</pre></td><td><a href='../CodeLlama7_T_D/Q57/tests.py.template'>Link</a></td></tr><tr><td>58</td><td>0.0</td><td><pre>Write a function called 'submatrix_with_n_numbers' that takes one argument which is a two-dimensional numpy matrix of integers. The function should return the count of all submatrices of the given matrix that contain $0 integers each. If no such submatrix is found, the function should return 0.</pre></td><td><pre>import numpy as np
+from typing import Any
+
+
+def submatrix_with_n_numbers(mat: Any) -> int:
+    result = []
+    if type(mat) == list:
+        if not mat:
+            return []
+    elif mat.size == 0:
+        return []
+    if type(mat).__module__ != np.__name__:
+        mat = np.asmatrix(mat)
+    rows, columns = mat.shape[0], mat.shape[1]
+    submatrix_of_size_n = 0
+    for c in range(rows):
+        for i in range(columns):
+            for j in range(1, columns + 1 - i):
+                temp_submatrix = (mat[c:c + 1, i:i + j])
+                ro, co = temp_submatrix.shape
+                if ro * co == $0:
+                    submatrix_of_size_n += 1
+
+    for c in range(columns):
+        for i in range(rows):
+            for j in range(2, rows + 1 - i):
+                temp_submatrix = (mat[i:i + j, c:c + 1])
+                ro, co = temp_submatrix.shape
+                if ro * co == $0:
+                    submatrix_of_size_n += 1
+
+    for i in range(0, rows - 1):
+        for row in range(1, rows - i):
+            for j in range(0, columns - 1):
+                for column in range(1, columns - j):
+                    temp_submatrix = (mat[i:row + i + 1, j:column + j + 1])
+                    ro, co = temp_submatrix.shape
+                    if ro * co == $0:
+                        submatrix_of_size_n += 1
+
+
+    return submatrix_of_size_n
+</pre></td><td><a href='../CodeLlama7_T_D/Q58/tests.py.template'>Link</a></td></tr><tr><td>59</td><td>0.2</td><td><pre>Write a function called 'all_left_truncatable_prime' that takes an argument which is a tuple of positive integers. Let x be the integer at index $0. The function should return the list of all left-truncatable prime numbers less than x. The return list should be sorted in $1 order. A left-truncatable prime number is a prime number that contains no 0 and if the leading leftmost digit is successively removed, then all resulting numbers are prime.</pre></td><td><pre>from typing import List
+
+
+def is_left_truncatable_prime(n: int) -> bool:
+    if '0' in str(n) or n < 2:
+        return False
+
+    while n >= 2:
+        length = len(str(n))
+        for i in range(2, n):
+            if n % i == 0:
+                return False
+        n = n % (10 ** (length - 1))
+
+    if n == 1:
+        return False
+
+    return True
+
+
+def all_left_truncatable_prime(tup: tuple) -> List[int]:
+    n = tup[$0]
+    result = []
+    for i in range(2, n):
+        if is_left_truncatable_prime(i):
+            result.append(i)
+
+    if '$1' == 'descending':
+        result.reverse()
+
+    return result</pre></td><td><a href='../CodeLlama7_T_D/Q59/tests.py.template'>Link</a></td></tr><tr><td>60</td><td>0.0</td><td><pre>Write a function called 'all_left_right_truncatable_prime' that takes one argument which is a tuple of positive integers. Let x be the integer at index $0. The function should return the list of all left-and-right-truncatable prime numbers less than or equal to x. The return list should be sorted in $1 order. If no left-and-right-truncatable prime number exists in the specified range, the function should return an empty list. A left-and-right-truncatable prime number is a prime number that contains no 0 and remains prime if the leading leftmost and last rightmost digits are simultaneously successively removed down to a one- or two-digit prime.</pre></td><td><pre>from typing import List
+
+
+def is_left_right_truncatable_prime(n: int) -> bool:
+    if '0' in str(n) or n < 2:
+        return False
+
+    while n >= 2:
+        length = len(str(n))
+        for i in range(2, n):
+            if n % i == 0:
+                return False
+        n = n % (10 ** (length - 1))
+        n = n // 10
+
+    if n == 1:
+        return False
+
+    return True
+
+
+def all_left_right_truncatable_prime(tup: tuple) -> List[int]:
+    n = tup[$0]
+    result = []
+    for i in range(2, n + 1):
+        if is_left_right_truncatable_prime(i):
+            result.append(i)
+
+    if '$1' == 'descending':
+        result.reverse()
+
+    return result</pre></td><td><a href='../CodeLlama7_T_D/Q60/tests.py.template'>Link</a></td></tr></table></body></html>
