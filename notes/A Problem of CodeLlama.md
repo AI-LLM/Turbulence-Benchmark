@@ -1,6 +1,6 @@
 # A Problem of CodeLlama
 
-[This paper]((https://arxiv.org/abs/2312.14856)) designs a new test dataset for code models and makes the test results on models such as GPT-4, GPT-3.5, CodeLlama (7B and 13B, 4-bit quantization) [open-source](https://github.com/ShahinHonarvar/Turbulence-Benchmark). 
+[This paper](https://arxiv.org/abs/2312.14856) designs a new test dataset for code models and makes the test results on models such as GPT-4, GPT-3.5, CodeLlama (7B and 13B, 4-bit quantization) [open-source](https://github.com/ShahinHonarvar/Turbulence-Benchmark). 
 
 Some noteworthy data analyses in the paper show, for example, the differences between setting the temperature to 0 or the default value D in Table II indicate that **when generating code with LLMs, basically using temperature=0 is sufficient**.
 ![](Turbulence-tableII.jpg)
