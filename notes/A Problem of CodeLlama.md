@@ -119,7 +119,7 @@ def all_even_ints_inclusive(my_list):
     return result
 ```
 
-It uses the start:stop+1 method more consistently to achieve a higher accuracy rate. Of course, comparing non-quantized with quantized versions and larger scale parameters still requires multiple repeated complete tests like those in the paper to reduce probabilistic errors.
+It uses the start:stop+1 method more consistently to achieve a higher accuracy rate. Of course, comparing non-quantized with quantized versions and larger scale parameters still requires multiple repeated systematic tests like those in the paper to reduce probabilistic errors.
 
 ## Rephrasing 
 
