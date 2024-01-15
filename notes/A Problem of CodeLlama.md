@@ -121,9 +121,9 @@ def all_even_ints_inclusive(my_list):
 
 It uses the start:stop+1 method more consistently to achieve a higher accuracy rate. Of course, comparing non-quantized with quantized versions and larger scale parameters still requires multiple repeated complete tests like those in the paper to reduce probabilistic errors.
 
+## Rephrasing 
 
-
-Finally I tried to revise the prompt to mitigate the issue. Let's go back to the question Q2 and involve a bit more models.
+Finally I tried to rewrite the prompt to mitigate the issue. Let's go back to the question Q2 and involve a bit more models.
 
 Q2-1: Write a function called 'all_ints_exclusive' that takes one argument, a list of integers, and returns the list of all elements from index 27 to index 34, both exclusive.
 
@@ -198,7 +198,7 @@ Write a function called 'all_ints_exclusive' that takes 3 arguments, a list of i
 ❌Mistral-7b
 > I understand the guidelines. Please provide more information about the integers list and the integers start and end.
 
-It seems not helpful. The phind version of CodeLlama fine-tuning seems 
+Except Phind, other models do not read words of "start","end" better than numbers. We could assume that Phind learns more about the "start+1" from its instruction fine-tuning.
 
 🧠rephrasing ‘exclusive’ to ‘not including’:
 
@@ -264,9 +264,11 @@ Write a function called 'all_ints_exclusive' that takes 3 arguments, a list of i
 > ```
 > This function takes a list of integers l, an integer start, and an integer end as input. It returns a list of all elements from index start to index end, excluding start and end. Inside the function, a for loop iterates through all integers from start to end (inclusive) and checks if it is in the range start:end. If it is not, meaning it is equal to either start or end, the function skips that number and continues to the next number. Otherwise, it adds that number to a result list. Finally, the function returns the result list.
 
+This may show that "not including" is more common than "exclusive" in the models' trainings. 
 
+## Conclusion
 
-Besides the range index exclusive problem, the paper also summarized four other categories of issues leading to incorrect results that warrant further detailed analysis. These issues are likely the main factors causing the huge variations in CodeLlama's accuracy rate (as shown in the following image). How to improve these issues in model training or fine-tuning is key. From the slight advantage shown by the 34B model, **using larger models might be an effective approach**. However, based on the findings above, **it's difficult to say that CodeLlama 13B or smaller models have any real understanding of natural language instructions**; different usage methods from online large models like GPT should be explored.
+Besides the range index exclusive problem, the paper also summarized four other categories of issues leading to incorrect results that warrant further detailed analysis. These issues are likely the main factors causing the huge variations in CodeLlama's accuracy rate (as shown in the following image). How to improve these issues in model training or fine-tuning is key. From the slight advantage shown by the 34B model, **using larger models might be an effective approach**. However, based on the findings above, **it's difficult to say that CodeLlama 13B or smaller models have any real understanding of natural language instructions**; different usage methods, from online large models like GPT should be explored, e.g. **Fine-tuning like Phind or rephrasing the prompt to make sure the instruction in inference is as similar as possible to the ones in training**.
 ![](discover-gradient-multi.png)
 
 
