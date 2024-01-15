@@ -274,7 +274,7 @@ Write a function called 'all_ints_exclusive' that takes 3 arguments, a list of i
 > ```
 > This function takes a list of integers l, an integer start, and an integer end as input. It returns a list of all elements from index start to index end, excluding start and end. Inside the function, a for loop iterates through all integers from start to end (inclusive) and checks if it is in the range start:end. If it is not, meaning it is equal to either start or end, the function skips that number and continues to the next number. Otherwise, it adds that number to a result list. Finally, the function returns the result list.
 
-This may show that "not including" is more common than "exclusive" in the models' trainings. 
+I guess that "not including" is more common than "exclusive" in the models' training datasets. 
 
 ## Conclusion
 
