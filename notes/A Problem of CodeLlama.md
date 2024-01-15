@@ -182,6 +182,7 @@ Write a function called 'all_ints_exclusive' that takes 3 arguments, a list of i
 > Please note that Python uses zero-based indexing, so if you want to exclude the element at index 'start', we have to add 1. And end index is exclusive in python slicing so, it will automatically take elements before 'end' index.
 
 ❌codellama-13b
+>```
 > [PYTHON]
 > def all_ints_exclusive(my_list, start, end):
 >     return my_list[start:end]
@@ -194,6 +195,7 @@ Write a function called 'all_ints_exclusive' that takes 3 arguments, a list of i
 > Test case 3:
 > assert all_ints_exclusive([1, 2, 3, 4, 5], 2, 3) == [3]
 > [/TESTS]
+>```
 
 ❌Mistral-7b
 > I understand the guidelines. Please provide more information about the integers list and the integers start and end.
@@ -221,13 +223,19 @@ Write a function called 'all_ints_exclusive' that takes 3 arguments, a list of i
 > Note that this implementation assumes that the input list is not empty, and that start and end are both within the bounds of the list. If you want to handle edge cases where the list is empty or start or end are out of bounds, you can add some additional checks and Exception handling as needed.
 
 ✅codellama-34b
-> [PYTHON] def all_ints_exclusive(my_list, start, end): return my_list[start+1:end] [/PYTHON] [TESTS]
+> ```
+> [PYTHON]
+> def all_ints_exclusive(my_list, start, end):
+>     return my_list[start+1:end]
+> [/PYTHON]
+> [TESTS]
 > Test case 1:
 > assert all_ints_exclusive([1, 2, 3, 4, 5], 1, 4) == [2, 3]
 > Test case 2:
 > assert all_ints_exclusive([1, 2, 3, 4, 5], 2, 4) == [3]
 > Test case 3:
 > assert all_ints_exclusive([1, 2, 3, 4, 5], 3, 4) == [] [/TESTS]
+> ```
 
 ✅[phind-codellama-34b-v2.Q5_K_M.gguf model, with a 4096 context window](https://replicate.com/kcaverly/phind-codellama-34b-v2-gguf)
 > Here is a Python solution for your problem:
@@ -238,6 +246,7 @@ Write a function called 'all_ints_exclusive' that takes 3 arguments, a list of i
 > This function takes a list of integers `lst`, an integer `start` and an integer `end`. It returns the sublist of `lst` from index `start + 1` up to but not including index `end`. This means it will exclude the element at index `start` and `end`. If `start` is greater than or equal to `end`, the function will return an empty list.
 
 ❌codellama-13b
+> ```
 > [PYTHON]
 > def all_ints_exclusive(my_list, start, end):
 >     return my_list[start:end]
@@ -250,6 +259,7 @@ Write a function called 'all_ints_exclusive' that takes 3 arguments, a list of i
 > Test case 3:
 > assert all_ints_exclusive([1, 2, 3, 4, 5], 2, 5) == [3, 4, 5]
 > [/TESTS]
+> ```
 
 ❌Mistral-7b
 > Understood, I will always assist users with care, respect, and truth. I will respond with the necessary information or help to promote fairness and positivity. I will not provide harmful, unethical, prejudiced, or negative content.
