@@ -121,6 +121,151 @@ def all_even_ints_inclusive(my_list):
 
 It uses the start:stop+1 method more consistently to achieve a higher accuracy rate. Of course, comparing non-quantized with quantized versions and larger scale parameters still requires multiple repeated complete tests like those in the paper to reduce probabilistic errors.
 
+
+
+Finally I tried to revise the prompt to mitigate the issue. Let's go back to the question Q2 and involve a bit more models.
+
+Q2-1: Write a function called 'all_ints_exclusive' that takes one argument, a list of integers, and returns the list of all elements from index 27 to index 34, both exclusive.
+
+❌[phind-codellama-34b-v2.Q5_K_M.gguf model, with a 4096 context window](https://replicate.com/kcaverly/phind-codellama-34b-v2-gguf)
+> Here is a Python solution for your problem:
+> 
+> ```python
+> def all_ints_exclusive(lst):
+>     if len(lst) > 35:  # Check if list is long enough
+>         return lst[27:34]  
+>     else:
+>         return "List is too short."
+> ```
+> Testing the function
+> ```python
+> print(all_ints_exclusive(list(range(50))))  # Returns a list from 27 to 33 (both exclusive)
+> ```
+> Please note that Python list slicing is from start index up to but not including end index, and indices are zero-based. Therefore, the elements from index 27 to index 34, both exclusive, will return > items at indices 27, 28, 29, 30, 31, 32, and 33.
+>
+> Also, please note that if your list is not long enough (fewer than 35 elements), the function returns a message "List is too short." You may want to handle this situation differently depending on your needs. For example, you could return a list from the start of the list to the end, or an error message, etc.
+
+It seems that Phind (3rd of [the leaderboard](https://huggingface.co/spaces/bigcode/bigcode-models-leaderboard), i will try to test the 1st later)'s fine-tuning on CodeLlama still has this issue.
+
+🧠change parameter from numbers to meaningful variable name:
+
+Write a function called 'all_ints_exclusive' that takes 3 arguments, a list of integers, an integer ‘start’ and an integer ‘end’. The function returns the list of all elements from index ‘start’ to index ‘end’, both exclusive.
+
+❌llama2-70b-instruct
+> Sure! Here is a possible implementation of the all_ints_exclusive function:
+> ```python
+> def all_ints_exclusive(lst, start, end):
+>     return lst[start:end]
+> ```    
+> This function takes a list lst and two integers start and end, and returns a slice of the list from start to end, both exclusive. The slice is created using the slice notation [start:end], which returns all elements from index start to index end-1.
+> Here’s an example usage of the function:
+> ```
+> >>> lst = [1, 2, 3, 4, 5, 6, 7]
+> >>> all_ints_exclusive(lst, 2, 5)
+> [3, 4]
+> ```
+> In this example, the function is called with the list lst, start=2, and end=5. The function returns the list [3, 4], which are all elements from index 2 to index 4, both exclusive.
+
+❌codellama-34b
+> [PYTHON] def all_ints_exclusive(my_list, start, end): return my_list[start:end] [/PYTHON] [TESTS]
+> …
+
+✅[phind-codellama-34b-v2.Q5_K_M.gguf model, with a 4096 context window](https://replicate.com/kcaverly/phind-codellama-34b-v2-gguf)
+> Here is a Python solution for your problem:
+> 
+> ```python
+> def all_ints_exclusive(lst, start, end):
+>     return lst[start+1:end]
+> ```
+> This function takes a list of integers 'lst', an integer 'start' and an integer 'end'. It returns the sublist of 'lst' from index 'start'+1 to index 'end'. 
+> 
+> Please note that Python uses zero-based indexing, so if you want to exclude the element at index 'start', we have to add 1. And end index is exclusive in python slicing so, it will automatically take elements before 'end' index.
+
+❌codellama-13b
+> [PYTHON]
+> def all_ints_exclusive(my_list, start, end):
+>     return my_list[start:end]
+> [/PYTHON]
+> [TESTS]
+> Test case 1:
+> assert all_ints_exclusive([1, 2, 3, 4, 5], 0, 5) == [1, 2, 3, 4]
+> Test case 2:
+> assert all_ints_exclusive([1, 2, 3, 4, 5], 1, 4) == [2, 3, 4]
+> Test case 3:
+> assert all_ints_exclusive([1, 2, 3, 4, 5], 2, 3) == [3]
+> [/TESTS]
+
+❌Mistral-7b
+> I understand the guidelines. Please provide more information about the integers list and the integers start and end.
+
+It seems not helpful. The phind version of CodeLlama fine-tuning seems 
+
+🧠rephrasing ‘exclusive’ to ‘not including’:
+
+Write a function called 'all_ints_exclusive' that takes 3 arguments, a list of integers, an integer ‘start’ and an integer ‘end’. The function returns the list of all elements from index ‘start’ to index ‘end’, not including ‘start’ and ‘end’.
+
+✅llama2-70b-instruct
+> Sure! Here’s a possible implementation of the all_ints_exclusive function:
+> ```python
+> def all_ints_exclusive(lst, start, end):
+>     return lst[start+1:end]
+> ```
+> This function takes a list lst and two integers start and end, and returns a new list containing all the elements from start+1 to end-1.
+> Here’s an example of how you can use this function:
+> ```
+> >>> lst = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+> >>> all_ints_exclusive(lst, 2, 6)
+> [3, 4, 5]
+> ```
+> In this example, the function returns the list [3, 4, 5), which are all the elements from index 2 to index 5, not including 2 and 5.
+> Note that this implementation assumes that the input list is not empty, and that start and end are both within the bounds of the list. If you want to handle edge cases where the list is empty or start or end are out of bounds, you can add some additional checks and Exception handling as needed.
+
+✅codellama-34b
+> [PYTHON] def all_ints_exclusive(my_list, start, end): return my_list[start+1:end] [/PYTHON] [TESTS]
+> Test case 1:
+> assert all_ints_exclusive([1, 2, 3, 4, 5], 1, 4) == [2, 3]
+> Test case 2:
+> assert all_ints_exclusive([1, 2, 3, 4, 5], 2, 4) == [3]
+> Test case 3:
+> assert all_ints_exclusive([1, 2, 3, 4, 5], 3, 4) == [] [/TESTS]
+
+✅[phind-codellama-34b-v2.Q5_K_M.gguf model, with a 4096 context window](https://replicate.com/kcaverly/phind-codellama-34b-v2-gguf)
+> Here is a Python solution for your problem:
+> ```python
+> def all_ints_exclusive(lst, start, end):
+>     return lst[start+1:end]
+> ```
+> This function takes a list of integers `lst`, an integer `start` and an integer `end`. It returns the sublist of `lst` from index `start + 1` up to but not including index `end`. This means it will exclude the element at index `start` and `end`. If `start` is greater than or equal to `end`, the function will return an empty list.
+
+❌codellama-13b
+> [PYTHON]
+> def all_ints_exclusive(my_list, start, end):
+>     return my_list[start:end]
+> [/PYTHON]
+> [TESTS]
+> Test case 1:
+> assert all_ints_exclusive([1, 2, 3, 4, 5], 0, 3) == [1, 2, 3]
+> Test case 2:
+> assert all_ints_exclusive([1, 2, 3, 4, 5], 1, 4) == [2, 3, 4]
+> Test case 3:
+> assert all_ints_exclusive([1, 2, 3, 4, 5], 2, 5) == [3, 4, 5]
+> [/TESTS]
+
+❌Mistral-7b
+> Understood, I will always assist users with care, respect, and truth. I will respond with the necessary information or help to promote fairness and positivity. I will not provide harmful, unethical, prejudiced, or negative content.
+> To answer your request, here’s the ‘all_ints_exclusive’ function:
+> ```python
+> def all_ints_exclusive(l, start, end):
+>    result = []
+>    for i in range(start, end + 1):
+>        if i in range(start, end):
+>            result.append(i)
+>    return result
+> ```
+> This function takes a list of integers l, an integer start, and an integer end as input. It returns a list of all elements from index start to index end, excluding start and end. Inside the function, a for loop iterates through all integers from start to end (inclusive) and checks if it is in the range start:end. If it is not, meaning it is equal to either start or end, the function skips that number and continues to the next number. Otherwise, it adds that number to a result list. Finally, the function returns the result list.
+
+
+
 Besides the range index exclusive problem, the paper also summarized four other categories of issues leading to incorrect results that warrant further detailed analysis. These issues are likely the main factors causing the huge variations in CodeLlama's accuracy rate (as shown in the following image). How to improve these issues in model training or fine-tuning is key. From the slight advantage shown by the 34B model, **using larger models might be an effective approach**. However, based on the findings above, **it's difficult to say that CodeLlama 13B or smaller models have any real understanding of natural language instructions**; different usage methods from online large models like GPT should be explored.
 ![](discover-gradient-multi.png)
 
